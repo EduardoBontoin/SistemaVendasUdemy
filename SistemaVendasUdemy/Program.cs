@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using SistemaVendasUdemy.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<SistemaVendasUdemyContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SistemaVendasUdemyContext") ?? throw new InvalidOperationException("Connection string 'SistemaVendasUdemyContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
